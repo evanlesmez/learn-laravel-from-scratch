@@ -29,3 +29,7 @@ Route::get("/test", function() {
 });
 
 Route::get('/posts/{post}', [PostsController::class,'show']);
+
+Route::get('/contact', function () {
+    return view('contact');
+});
