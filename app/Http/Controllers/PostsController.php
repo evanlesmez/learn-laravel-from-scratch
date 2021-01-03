@@ -1,20 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Post;;
 
 class PostsController 
 {
-    public function show($post) {
-        $posts = [
-            'a' => 'Hi I a m post',
-            'b' => 'post I am'
-        ];
-        if (! array_key_exists($post,$posts)){
-            abort(404, 'Sorry that post was not found.');
-        };
-    
+    public function show($slug) {
+
+        $post = Post::where('slug', $slug, $slug)->firstOrFail();
+        
         return view('post', [
-            'post' => $posts[$post]
+            'post' => $post
         ]);
-    }
+    }   
 }
