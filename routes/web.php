@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\ArticlesController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,3 +35,20 @@ Route::get('/posts/{post}', [PostsController::class,'show']);
 Route::get('/contact', function () {
     return view('contact');
 });
+
+Route::get('/simple', function () {
+    return view('simple');
+});
+
+Route::get('/about', function () {
+    $articles = App\Models\Article::latest()->get();
+    return view ('about', [
+        'articles' => $articles
+    ]);
+});
+
+Route::get('/articles', [ArticlesController::class, 'index']);
+
+Route::get('/articles/{article}', [ArticlesController::class, 'show']);
+
+
