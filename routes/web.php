@@ -48,7 +48,10 @@ Route::get('/about', function () {
 });
 
 Route::get('/articles', [ArticlesController::class, 'index']);
-
+Route::get('/articles/create', [ArticlesController::class, 'create']);
+Route::post('/articles',[ArticlesController::class, 'store']);
+Route::put('/articles/{article}', [ArticlesController::class, 'edit']);
+Route::delete('/articles/{article}',[ArticlesController::class, 'destroy']);
 Route::get('/articles/{article}', [ArticlesController::class, 'show']);
 
 
