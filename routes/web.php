@@ -52,6 +52,6 @@ Route::get('/articles/create', [ArticlesController::class, 'create']);
 Route::post('/articles',[ArticlesController::class, 'store']);
 Route::put('/articles/{article}', [ArticlesController::class, 'update']);
 Route::delete('/articles/{article}',[ArticlesController::class, 'destroy']);
-Route::get('/articles/{article}', [ArticlesController::class, 'show']);
+Route::get('/articles/{article}', [ArticlesController::class, 'show'])->name('articles.show');
 Route::get('/articles/{article}/edit', [ArticlesController::class, 'edit']);
 

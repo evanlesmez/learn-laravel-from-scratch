@@ -16,9 +16,7 @@ class ArticlesController extends Controller
         ]);
     }
 
-    public function show ($id) {
-        // show a single resource
-        $article = Article::find($id);
+    public function show (Article $article) {
         return view('articles.show', ['article' => $article]);
     }
 
@@ -30,44 +28,33 @@ class ArticlesController extends Controller
 
     public function store () {
         // persists the new resource
-        request() -> validate([
-            'title' => 'required',
-            'excerpt' => 'required',
-            'body' => 'required'
-        ]); 
-        $article = new Article();
-        $article->title = request('title');
-        $article->excerpt = request('excerpt');
-        $article->body = request('body');
-        $article->save();
+        Article::create($this->validateArticle());
         return redirect('/articles');
     } 
 
-    public function edit ($id) {
+    public function edit (Article $article) {
         // show a view to edit an existing resource
-        $article = Article::find($id);
         return view('articles.edit', [
             'article' => $article
         ]);
     }
     
-    public function update ($id) {
+    public function update (Article $article) {
         // persist changes to an edited resource
-        request() -> validate([
-            'title' => 'required',
-            'excerpt' => 'required',
-            'body' => 'required'
-        ]); 
-        $article = Article::find($id);
-        $article->title = request('title');
-        $article->excerpt = request('excerpt');
-        $article->body = request('body');
-        $article->save();
-        return redirect('articles/' . $article->id);
+        $article->update($this->validateArticle());
+        return redirect(route("articles.show", $article));
     }
 
     public function destroy ($id) {
        // delete a resource 
         return redirect('/articles');
+    }
+    
+    protected function validateArticle () {
+        return request() -> validate([
+            'title' => 'required',
+            'excerpt' => 'required',
+            'body' => 'required'
+        ]);
     }
 }
