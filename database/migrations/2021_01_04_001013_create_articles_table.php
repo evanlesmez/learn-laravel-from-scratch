@@ -20,6 +20,11 @@ class CreateArticlesTable extends Migration
             $table->string('title');
             $table->text('body');
             $table->text('excerpt');
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 
