@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ArticlesController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +15,16 @@ use App\Http\Controllers\ArticlesController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $container = new App\Models\Container();
+    $container -> bind('example', function () {
+        return new App\Models\Example();
+    });
+
+    $example= $container->resolve('example');
+
+    $example->go();
+
+    // return view('welcome');
 });
 
 Route::get('/ev', function () {
@@ -55,3 +63,7 @@ Route::delete('/articles/{article}',[ArticlesController::class, 'destroy']);
 Route::get('/articles/{article}', [ArticlesController::class, 'show'])->name('articles.show');
 Route::get('/articles/{article}/edit', [ArticlesController::class, 'edit']);
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

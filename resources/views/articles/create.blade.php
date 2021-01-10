@@ -21,12 +21,24 @@
                 @error('excerpt')
                     <p>{{$errors->first('excerpt')}}</p>
                 @enderror
-            <label for="body">Body</label>
-            @error('body')
-                <p>{{$errors->first('body')}}</p>
-            @enderror
-            <textarea name="body" id="body" cols="30" rows="10" >{{old("body")}}</textarea>
-            <button type="submit">Submit</button>
+                
+                <label for="body">Body</label>
+                @error('body')
+                    <p>{{$errors->first('body')}}</p>
+                @enderror
+                <textarea name="body" id="body" cols="30" rows="10" >{{old("body")}}</textarea>
+
+               <label for="body">Tags</label>
+                <select name="tags[]" id="tags" multiple>
+                    @foreach ($tags as $tag)
+                        <option value="{{$tag->id}}">{{$tag->name}}</option>
+                    @endforeach
+                </select>
+                @error('tags')
+                    <p>{{$message}}</p>
+                @enderror
+
+                <button type="submit">Submit</button>
             </form>
         </div>
     </div>
