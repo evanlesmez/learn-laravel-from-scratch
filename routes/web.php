@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\PagesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,18 +15,18 @@ use App\Http\Controllers\ArticlesController;
 |
 */
 
-Route::get('/', function () {
-    $container = new App\Models\Container();
-    $container -> bind('example', function () {
-        return new App\Models\Example();
-    });
+Route::get('/', [PagesController::class, 'home']);
+    // ddd(resolve('App\Models\Example'));
+    // $container = new App\Models\Container();
+    // $container -> bind('example', function () {
+    //     return new App\Models\Example();
+    // });
 
-    $example= $container->resolve('example');
-
-    $example->go();
-
+    // $example= $container->resolve('example');
+    
+    // $example->go();
     // return view('welcome');
-});
+
 
 Route::get('/ev', function () {
     return ["foo" => "bar"];
