@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\ContactController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,9 +42,8 @@ Route::get("/test", function() {
 
 Route::get('/posts/{post}', [PostsController::class,'show']);
 
-Route::get('/contact', function () {
-    return view('contact');
-});
+Route::get('/contact', [ContactController::class, 'show']);
+Route::post('/contact', [ContactController::class, 'store']);
 
 Route::get('/simple', function () {
     return view('simple');
