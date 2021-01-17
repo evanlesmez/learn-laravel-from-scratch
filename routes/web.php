@@ -5,6 +5,9 @@ use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PaymentsController;
+use App\Http\Controllers\UserNotificationsController;
+use App\Http\Controllers\ConversationsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -68,3 +71,10 @@ Route::get('/articles/{article}/edit', [ArticlesController::class, 'edit']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::post('/payments', [PaymentsController::class, 'store'])->middleware('auth');
+Route::get("/payments/create", [PaymentsController::class, 'create'])->middleware('auth');
+Route::get('/notifications', [UserNotificationsController::class, 'show'])->middleware('auth');
+
+Route::get('/conversations', [ConversationsController::class, 'index'])->name('conversations.index');
+Route::get('/conversations/{conversation}', [ConversationsController::class, 'show'])->name('conversations.show');

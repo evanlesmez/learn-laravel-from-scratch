@@ -29,6 +29,10 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
-    'foo' => 'value'
+    'foo' => 'value',
+    'nexmo' => [
+        'sms_from' => '18179181006',
+],
+
 
 ];
