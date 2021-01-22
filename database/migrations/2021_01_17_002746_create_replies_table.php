@@ -19,9 +19,6 @@ class CreateRepliesTable extends Migration
             $table->text('body');
             $table->unsignedBigInteger('conversation_id');
             $table->unsignedBigInteger('user_id');
-
-            $table->unique(["conversation_id" ]);
-
             $table->foreign('conversation_id')->references('id')->on('conversations')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 

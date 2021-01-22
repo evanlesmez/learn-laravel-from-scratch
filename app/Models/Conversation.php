@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Reply;
 class Conversation extends Model
 {
     use HasFactory;
@@ -14,6 +14,6 @@ class Conversation extends Model
     }
 
     public function replies () {
-        return $this->hasMany("App\Models\Reply");
+        return $this->hasMany(Reply::class);
     }   
 }
